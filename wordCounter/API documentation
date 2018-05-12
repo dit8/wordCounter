@@ -1,0 +1,25 @@
+wordCounter API
+
+currently supported languages is English and Hebrew (any other character is omitted).
+word is defined as two or more letters having no non alphanumeric characters
+# eg. "it's" would be understood as "it"
+
+in order to load data to server please refer to wordcounter endpoint
+in order to get a word count for a word please refer to wordstatistics endpoint
+wordcounter endpoint
+====================
+usage example
+POST http://127.0.0.1:8000/wordcounter\
+body with one of:
+{"string":"Hi! My name is (what?), my name is (who?), my name is Slim Shady"}
+{"url" : "https://www.google.com/"}
+{"file" : "c:\\RDP\\myfile.txt"}
+
+response page 200 or page 4XX for invalid requests
+
+wordstatistics endpint
+=====================
+usage example
+GET http://127.0.0.1:8000/wordstatistics?word=שינוי
+
+response a number of total appearances that was recorded in all requests.

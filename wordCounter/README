@@ -1,0 +1,22 @@
+implementation stuff
+I've chosen to work with django mainly since I wanted to focus on the buissness logic.
+However having django have application level synchronous,
+I looked for the simplest way to achieve background processing of file.
+
+- asyncIO -
+- django channells
+- Task queue such as Celery (overkill)
+- implemented a background thread that saves only
+
+assumption:
+- the code was written using Python 3.6.5
+- the server does not have shutdown sequence handling.
+  pending queue 'tasks' which is infect file paths will be deleted.
+  (a solution can be writing a SIGINT handler, which saves the queue using module of pending file paths,
+  and queue read from DB upon server start)
+- having string and url being small requests, they are performed synchronously.
+  if user experience is bad, it is possible to have all requested work similarly with the queue.
+- it is possible to enhance further time of processing with having thread pool (I then need to lock the data structure)
+- Regarding exception handling, since this code is in development I did not wrap the entire view with try-catch
+  so I can see easily server level exceptions.
+- server was tested on windows only, but should work on any OS.
